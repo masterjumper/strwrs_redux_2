@@ -3,7 +3,7 @@ import {SafeAreaView, FlatList, View, StyleSheet, Text, ActivityIndicator } from
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpeciesAsync } from '../../features/species/speciesSlice';
 import Species from './Species';
-import url  from '../../constants/url';
+import url from '../../constants/url';
 
 const SpeciesList = () => {
   const list = useSelector(state => state.species)  
@@ -20,29 +20,34 @@ const SpeciesList = () => {
   }
 
   const loadMoreItems = () => {    
-    setcurrentUrl(list.next)    
+    setcurrentUrl(list.next)
   }
 
-  useEffect(() => {            
+  useEffect(() => { 
+    if(list.next){
       dispatch(getSpeciesAsync(currentUrl));
+    }
   },[dispatch, currentUrl]);
 
   return (
+    <SafeAreaView>
         <View styles={styles.container}>                       
-        <FlatList
+        <FlatList contentContainerStyle={{ paddingBottom: 50 }}
             data={list.data.map((item)=>item)
             }      
             ItemSeparatorComponent={ItemSeparator}
             renderItem={({ item:item }) => (
               <Species {...item} />
             )}
-            //keyExtractor={(item) => item.name}            
+            keyExtractor={(item) => item.name}            
             ListFooterComponent={renderLoader}            
             //ListHeaderComponent={renderLoader}
             onEndReached = {loadMoreItems}
-            onEndReachedThreshold={0.8}                        
+            onEndReachedThreshold={0} 
+            refreshing={list.refreshing}                       
         />
         </View>    
+    </SafeAreaView>
   );
 };
 
@@ -54,11 +59,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom:10    
+    marginBottom:10,        
   },
   loader:{    
     margin:'center',
-    alignItems:'center'
+    alignItems:'center',
+    
   }
 });
 

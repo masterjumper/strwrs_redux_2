@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     },
     language:{
         color: theme.colors.white,
-        padding:4,
+        padding:5,
         backgroundColor:theme.colors.primary,        
         alignSelf:'flex-start',
         borderRadius:4,
