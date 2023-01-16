@@ -3,20 +3,18 @@ import {SafeAreaView, FlatList, View, StyleSheet, Text, ActivityIndicator } from
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpeciesAsync } from '../../features/species/speciesSlice';
 import Species from './Species';
-//import useReposSpecies from '../../Hooks/useReposSpecies'
-
+import url  from '../../constants/url';
 
 const SpeciesList = () => {
   const list = useSelector(state => state.species)  
   let dispatch = useDispatch();
-  const [currentUrl, setcurrentUrl] = useState('https://swapi.dev/api/species/?page=&format=json')  
+
+  const [currentUrl, setcurrentUrl] = useState(url.urlspecies)  
   
   const renderLoader = () => {
-    
-    return (
-      //console.log('loader');
+    return (      
       <View styles={styles.loader}>
-          <ActivityIndicator size={'large'}/>
+        <ActivityIndicator size={'large'}/>
       </View>   
     )
   }
@@ -25,9 +23,8 @@ const SpeciesList = () => {
     setcurrentUrl(list.next)    
   }
 
-  useEffect(() => {         
-      dispatch(getSpeciesAsync(currentUrl));         
-      /* // eslint-disable-next-line react-hooks/exhaustive-deps */      
+  useEffect(() => {            
+      dispatch(getSpeciesAsync(currentUrl));
   },[dispatch, currentUrl]);
 
   return (
@@ -41,22 +38,23 @@ const SpeciesList = () => {
             )}
             //keyExtractor={(item) => item.name}            
             ListFooterComponent={renderLoader}            
+            //ListHeaderComponent={renderLoader}
             onEndReached = {loadMoreItems}
-            onEndReachedThreshold={0.5}                        
+            onEndReachedThreshold={0.8}                        
         />
         </View>    
   );
 };
 
-
 const styles = StyleSheet.create({
   separator: {
-    height: 10,
+    height: 5,
   }, 
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom:10    
   },
   loader:{    
     margin:'center',

@@ -21,16 +21,15 @@ const styles = StyleSheet.create({
         borderRadius:4,
     }
 })
-//const imgURL = 'https://starwars-visualguide.com/assets/img/starships/'
 
 const SpeciesHeader = props =>{
     return (
        
-        <View style={{flexDirection:'row', paddingBottom:2}}>            
+        <View style={{flexDirection:'row', paddingBottom:1}}>            
             <View style={{ flexGrow:0 }}>
-               {/*  <Image style={styles.image} source= {{ uri:
+               {/*<Image style={styles.image} source= {{ uri:
                 `${imgURL + props.url.split('/')[props.url.split('/').length - 2]}.jpg`
-                     }}></Image> */}
+                     }}></Image>*/}
             </View>
             <View style={{ flex:1, paddingLeft:10 }}>                
                 <StyledText fontWeight='bold'>{props.name.toLocaleUpperCase()}</StyledText>                
