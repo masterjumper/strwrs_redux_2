@@ -1,5 +1,5 @@
 import React, { useEffect, useState}  from 'react';
-import {SafeAreaView, FlatList, View, StyleSheet, Text } from 'react-native';
+import {SafeAreaView, FlatList, View, StyleSheet, Text, ActivityIndicator } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSpeciesAsync } from '../../features/species/speciesSlice';
 import Species from './Species';
@@ -8,39 +8,43 @@ import Species from './Species';
 
 const SpeciesList = () => {
   const list = useSelector(state => state.species)  
-  let dispatch = useDispatch();  
-  /* const [repo, setRepo] = useState(null) */
+  let dispatch = useDispatch();
+  const [currentUrl, setcurrentUrl] = useState('https://swapi.dev/api/species/?page=&format=json')  
+  
+  const renderLoader = () => {
+    
+    return (
+      //console.log('loader');
+      <View styles={styles.loader}>
+          <ActivityIndicator size={'large'}/>
+      </View>   
+    )
+  }
+
+  const loadMoreItems = () => {    
+    setcurrentUrl(list.next)    
+  }
+
   useEffect(() => {         
-      dispatch(getSpeciesAsync());         
+      dispatch(getSpeciesAsync(currentUrl));         
       /* // eslint-disable-next-line react-hooks/exhaustive-deps */      
-  },[dispatch]);
+  },[dispatch, currentUrl]);
 
-  
-  
   return (
-    
-      <View styles={styles.container}> 
-      {
-        
-
-        /* console.log(
-            'vista...', list.data.map(
-              (items)=>{items.data}
-              )) */
-      }               
-      <FlatList
-          data={list.data.map((item)=>          
-                item.map((subitem)=>          
-                {subitem}
-              ))
-          }      
-          ItemSeparatorComponent={ItemSeparator}
-          renderItem={({ item:subitem }) => (
-            <Species {...subitem} />
-          )}
-      />
-      </View>    
-    
+        <View styles={styles.container}>                       
+        <FlatList
+            data={list.data.map((item)=>item)
+            }      
+            ItemSeparatorComponent={ItemSeparator}
+            renderItem={({ item:item }) => (
+              <Species {...item} />
+            )}
+            //keyExtractor={(item) => item.name}            
+            ListFooterComponent={renderLoader}            
+            onEndReached = {loadMoreItems}
+            onEndReachedThreshold={0.5}                        
+        />
+        </View>    
   );
 };
 
@@ -53,6 +57,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  loader:{    
+    margin:'center',
+    alignItems:'center'
   }
 });
 

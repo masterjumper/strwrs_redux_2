@@ -5,8 +5,11 @@ import axios from 'axios'
 export const speciesSlice = createSlice({
     name: 'species',
     initialState:{
+        page: null,
         data:[],
-        loading:true
+        loading:true,
+        next:null,
+        preview:null
     },
     reducers: {
         //list: (state) => {},
@@ -17,29 +20,38 @@ export const speciesSlice = createSlice({
         //state.value += 1
         //const respspecies = async () => {
         getList: (state, action) => {
-            state.data = [action.payload];
-            }            
+            state.data = [...state.data, ...action.payload];
+            state.loading = true;
+            },
+
+        getNext:(state, action)=>{
+          state.next = action.payload
+        }            
         //}      
       //other action item of list: something     
     },
   })
   
-  export const getSpeciesAsync = (data) => async (dispatch) => {
-    
-    try {        
-      //const response = await axios.get(`${API_URL}/${data}`);
-      const response = await axios.get('https://swapi.dev/api/species')
-                                    .then((res) => {
-                                      dispatch(getList(res.data.results))
-                                    })         
-    } catch (err) {
-      throw new Error(err);
+  //export const getSpeciesAsync = (data) => async (dispatch) => {    
+  export const getSpeciesAsync = (url) => async (dispatch) => {        
+    if(url){
+      try {        
+        //const response = await axios.get(`${API_URL}/${data}`);
+        //const response = await axios.get('https://swapi.dev/api/species/?page=&format=json', page)      
+          const response = await axios.get(url)
+                                        .then((res) => {                                     
+                                          dispatch(getList(res.data.results))                                     
+                                          dispatch(getNext(res.data.next))
+                                        })
+      } catch (err) {
+        throw new Error(err);
+      }
     }
-  };
+  }
 
   // Action creators are generated for each case reducer function
   //export const { list, getList } = speciesSlice.actions
-  export const { getList } = speciesSlice.actions
+  export const { getList, getNext } = speciesSlice.actions
   //export const showTodo = (state) => state.todo.data;
 
   export default speciesSlice.reducer
