@@ -16,7 +16,6 @@ export const speciesSlice = createSlice(
         count:null        
     },
     reducers: {
-
         getList: (state, action) => {
             state.data = [...state.data, ...action.payload];
             state.loading = true;
