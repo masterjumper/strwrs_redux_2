@@ -32,7 +32,7 @@ const SpeciesHeader = props =>{
                      }}></Image>*/}
             </View>
             <View style={{ flex:1, paddingLeft:10 }}>                
-                <StyledText fontWeight='bold'>{props.name.toLocaleUpperCase()}</StyledText>                
+                <StyledText fontWeight='bold'>{props.name.toUpperCase()}</StyledText>                
                 <StyledText color='secondary'>{props.classification}</StyledText>
                 <StyledText style={styles.language}>{props.language}</StyledText>
             </View>

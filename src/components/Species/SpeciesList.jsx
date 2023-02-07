@@ -1,16 +1,15 @@
 import React, { useEffect, useState}  from 'react';
 import {SafeAreaView, FlatList, View, StyleSheet, TextInput, ActivityIndicator } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSpeciesAsync } from '../../features/species/speciesSlice';
+import { getSpeciesAsync, getSpeciesAsync_fil } from '../../features/species/speciesSlice';
 import Species from './Species';
 import url from '../../constants/url';
 
 const SpeciesList = () => {
   const[search, setSearch] = useState([]);
-  //const[masterData, setmasterData]= useState([]);
-  const[filterData, setfilterData]= useState([]);
 
   const list = useSelector(state => state.species)  
+  
   let dispatch = useDispatch();
 
   const [currentUrl, setcurrentUrl] = useState(url.urlspecies)  
@@ -18,7 +17,9 @@ const SpeciesList = () => {
   const renderLoader = () => {
     return (      
       <View styles={styles.loader}>
-        <ActivityIndicator size={'large'}/>
+        {
+          currentUrl == null ?  '' : <ActivityIndicator size={'large'}/>
+        }
       </View>   
     )
   }
@@ -29,25 +30,26 @@ const SpeciesList = () => {
 
   useEffect(() => { 
     if(list.next){
-      dispatch(getSpeciesAsync(currentUrl));
-      setfilterData(list);
+      dispatch(getSpeciesAsync(currentUrl));      
     }
   },[dispatch, currentUrl]);
 
   const searchFilter=(text)=>{
-    
-    if(text){
-      const newData = list.data.filter((item)=>{        
-          const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
-          const textData = text.toUpperCase();       
-          return itemData.indexOf(textData) > -1;        
-        });
-      setfilterData(newData);
-
-    }else{
-      //setfilterData(masterData);
+    console.log(text);
+    if(text){       
+      dispatch(getSpeciesAsync_fil(text, list));
+     /*  const newData = list.data.filter((item)=>{ 
+        const itemData = item.name ? item.name.toUpperCase() : ''.toUpperCase();
+        const textData = text.toUpperCase();               
+        return itemData.indexOf(textData) > -1;
+      }); */
+      /* setfilterData(newData);       */
       setSearch(text);
-    }
+    }else{
+      setSearch(text);
+      
+      /* setfilterData(list); */
+    }   
   }
 
   return (
@@ -61,20 +63,21 @@ const SpeciesList = () => {
           onChangeText={(text)=>searchFilter(text)}
         />
         
-        <FlatList contentContainerStyle={{ paddingBottom: 50 }}
-            //data={list.data.map((item)=>item)
-            data={filterData.map((item)=>item)
-            }      
+        <FlatList contentContainerStyle={{ paddingBottom: 250 }}
+            //data={filterData.data}
+            //data={filterData.data}
+            data={list.filtered.map((item)=>item)}
             ItemSeparatorComponent={ItemSeparator}
             renderItem={({ item:item }) => (
               <Species {...item} />
             )}
+            //renderItem={<Species {...item}/>} 
             //keyExtractor={(item) => item.name}            
-            //keyExtractor={(item, index) => index.toString()}
+            keyExtractor={(item, index) => index.toString()}
             ListFooterComponent={renderLoader}            
             //ListHeaderComponent={renderLoader}
             onEndReached = {loadMoreItems}
-            onEndReachedThreshold={0} 
+            onEndReachedThreshold={0.5} 
             refreshing={list.refreshing}                       
         />
         </View>    

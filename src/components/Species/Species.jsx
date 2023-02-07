@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
 
 })
 
-const Species = props => (
+//const Species = props => (
+const Species = props => (    
     <View key={props.id} style={styles.container}>
         <SpeciesHeader {...props}/>
         <SpeciesStats {...props}/>
