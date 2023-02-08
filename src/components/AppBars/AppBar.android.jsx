@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   },
   scroll:{
     paddingBottom:15,
-    paddingHorizontal:10,    
+    paddingHorizontal:5,    
   },
   text:{    
     color: '#999',
@@ -51,6 +51,10 @@ const AppBar = () => {
       <ScrollView showsHorizontalScrollIndicator={false} horizontal style={styles.scroll}>
         <AppBarTab active to="/">Home</AppBarTab>
         <AppBarTab active to="/species">Species</AppBarTab>
+        <AppBarTab active to="/starships">Starships</AppBarTab>
+        <AppBarTab active to="/planets">Planets</AppBarTab>
+        <AppBarTab active to="/peoples">Peoples</AppBarTab>
+        <AppBarTab active to="/vehicles">Vehicles</AppBarTab>
       </ScrollView>
     </View>)
 }

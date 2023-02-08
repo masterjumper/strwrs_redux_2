@@ -1,18 +1,18 @@
 import React, { useEffect, useState}  from 'react';
 import {SafeAreaView, FlatList, View, StyleSheet, TextInput, ActivityIndicator } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
-import { getSpeciesAsync, getSpeciesAsync_fil, getSpeciesAsync_all } from '../../features/species/speciesSlice';
-import Species from './Species';
+import { getAsync, get_fil, get_all } from '../../features/vehicles/vehiclesSlice';
+import Vehicles from './Vehicles';
 import url from '../../constants/url';
 
-const SpeciesList = () => {
+const VehiclesList = () => {
   const[search, setSearch] = useState([]);
 
-  const list = useSelector(state => state.species)  
+  const list = useSelector(state => state.vehicles)  
   
   let dispatch = useDispatch();
 
-  const [currentUrl, setcurrentUrl] = useState(url.urlspecies)  
+  const [currentUrl, setcurrentUrl] = useState(url.urlvehicles)  
   
   const renderLoader = () => {
     return (      
@@ -30,17 +30,17 @@ const SpeciesList = () => {
 
   useEffect(() => { 
     if(list.next){
-      dispatch(getSpeciesAsync(currentUrl));      
+      dispatch(getAsync(currentUrl));      
     }
   },[dispatch, currentUrl]);
 
   const searchFilter=(text)=>{    
     if(text){       
-      dispatch(getSpeciesAsync_fil(text, list));
+      dispatch(get_fil(text, list));
       setSearch(text);
     }else{                  
       setSearch(text);     
-      dispatch(getSpeciesAsync_all());
+      dispatch(get_all());
     }  
   }
 
@@ -59,7 +59,7 @@ const SpeciesList = () => {
             data={list.filtered.map((item)=>item)}
             ItemSeparatorComponent={ItemSeparator}
             renderItem={({ item:item }) => (
-              <Species {...item} />
+              <Vehicles {...item} />
             )}            
             keyExtractor={(item, index) => index.toString()}
             ListFooterComponent={renderLoader}                        
@@ -98,4 +98,4 @@ const styles = StyleSheet.create({
 
 const ItemSeparator = () => <View style={styles.separator} />;
 
-export default SpeciesList;
+export default VehiclesList;

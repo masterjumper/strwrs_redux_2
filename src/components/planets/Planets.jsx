@@ -1,17 +1,9 @@
 import React from "react"
-import { View , StyleSheet} from "react-native"
-//import StyledText from './StyledText'
-import SpeciesHeader from './SpeciesHeader'
-import SpeciesStats from './SpeciesStats'
+import { View , StyleSheet, Image, Platform} from "react-native"
+import StyledText from './StyledText'
+import PlanetsStats from "./PlanetsStats"
+import RepositoryPlanetsHeader from "./PlanetsHeader"
 import theme from "../../theme"
-
-//const Species = props => (
-const Species = props => (    
-    <View key={props.id} style={styles.container}>
-        <SpeciesHeader {...props}/>
-        <SpeciesStats {...props}/>
-    </View>
-)
 
 const styles = StyleSheet.create({
     container:{
@@ -39,4 +31,12 @@ const styles = StyleSheet.create({
     }
 
 })
-export default Species
+
+const Planets = props => (
+    <View key={props.id} style={styles.container}>
+        <RepositoryPlanetsHeader {...props}/>
+        <PlanetsStats {...props}/>
+    </View>
+)
+
+export default Planets

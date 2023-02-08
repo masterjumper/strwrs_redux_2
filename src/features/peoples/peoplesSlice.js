@@ -2,10 +2,10 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 
-export const speciesSlice = createSlice(
+export const peoplesSlice = createSlice(
  
   {
-    name: 'species',
+    name: 'peoples',
     initialState:{
         page: null,
         data:[],
@@ -49,7 +49,7 @@ export const speciesSlice = createSlice(
     },
   })
 
-  export const getSpeciesAsync = (url) => async (dispatch) => {    
+  export const getAsync = (url) => async (dispatch) => {    
     if(url){            
       try {                    
           const response = await axios.get(url)
@@ -66,7 +66,7 @@ export const speciesSlice = createSlice(
     }else{dispatch(setRefresh(false))}
   }
 
-export const getSpeciesAsync_fil=(fil, lista) => (dispatch) =>{  
+export const get_fil=(fil, lista) => (dispatch) =>{  
   if(fil){    
       const filtered =  lista.master.filter(
             (item) => item.name.toUpperCase().includes(fil.toUpperCase())
@@ -75,10 +75,10 @@ export const getSpeciesAsync_fil=(fil, lista) => (dispatch) =>{
   }
 }
 
-export const getSpeciesAsync_all = () => (dispatch) =>{  
+export const get_all = () => (dispatch) =>{  
   dispatch(getListAll())
 }
 // Action creators are generated for each case reducer function  
-export const { getList, setNext, setRefresh, setCount, setPrevious, getListFil, getListAll } = speciesSlice.actions
+export const { getList, setNext, setRefresh, setCount, setPrevious, getListFil, getListAll } = peoplesSlice.actions
 
-export default speciesSlice.reducer
+export default peoplesSlice.reducer

@@ -1,15 +1,14 @@
 import React from "react"
-import { View , StyleSheet} from "react-native"
-//import StyledText from './StyledText'
-import SpeciesHeader from './SpeciesHeader'
-import SpeciesStats from './SpeciesStats'
+import { View , StyleSheet, Image, Platform} from "react-native"
+import StyledText from './StyledText'
+import VehiclesStats from "./VehiclesStats"
+import VehiclesHeader from "./VehiclesHeader"
 import theme from "../../theme"
 
-//const Species = props => (
-const Species = props => (    
+const Vehicles = props => (
     <View key={props.id} style={styles.container}>
-        <SpeciesHeader {...props}/>
-        <SpeciesStats {...props}/>
+        <VehiclesHeader {...props}/>
+        <VehiclesStats {...props}/>
     </View>
 )
 
@@ -39,4 +38,5 @@ const styles = StyleSheet.create({
     }
 
 })
-export default Species
+
+export default Vehicles

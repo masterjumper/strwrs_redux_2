@@ -5,6 +5,10 @@ import LoginPage from '../pages/Login'*/
 import { Routes, Route}  from 'react-router-native';
 /* import FilmsList from '../Films/FilmsList' */
 import SpeciesList from '../Species/SpeciesList'
+import StarshipsList from '../starships/StarshipsList'
+import PlanetsList from '../planets/PlanetsList'
+import PeoplesList from '../peoples/PeoplesList'
+import VehiclesList from '../vehicles/VehiclesList'
 /* import PeoplesList from '../Peoples/PeoplesList' */
 import AppBar from '../AppBars/AppBar'
 import Home from '../Home/Home'
@@ -21,6 +25,26 @@ const Main = () => {
                     element={<SpeciesList />} 
                     > 
                 </Route>               
+                <Route 
+                    path="starships" 
+                    element={<StarshipsList />} 
+                    > 
+                </Route>     
+                <Route 
+                    path="planets" 
+                    element={<PlanetsList />} 
+                    > 
+                </Route>
+                <Route 
+                    path="peoples" 
+                    element={<PeoplesList />} 
+                    > 
+                </Route>     
+                <Route 
+                    path="vehicles" 
+                    element={<VehiclesList />} 
+                    > 
+                </Route>           
             </Routes>        
         </View>
     ) 
