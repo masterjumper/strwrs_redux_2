@@ -35,10 +35,10 @@ const PlanetsHeader = props =>{
                 {/* <StyledText fontWeight='bold'>{props.fullName}</StyledText> */}
                 <StyledText fontWeight='bold'>{props.name.toLocaleUpperCase()}</StyledText>
                 {/* <StyledText color='secondary'>{props.description}</StyledText> */}
-                <StyledText color='secondary'>Climate: {props.climate.charAt(0).toUpperCase()+ props.climate.slice(1)}</StyledText>
+                <StyledText color='secondary'>Clim.: {props.climate.charAt(0).toUpperCase()+ props.climate.slice(1)}</StyledText>
                 
                 {/* <StyledText style={styles.language}>{props.language}</StyledText> */}
-                <StyledText style={styles.language}>{props.terrain.charAt(0).toUpperCase()+ props.terrain.slice(1)}</StyledText>
+                <StyledText style={styles.language}>Terrain: {props.terrain.charAt(0).toUpperCase()+ props.terrain.slice(1)}</StyledText>
             </View>
         </View>
     )}

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
 })
 const imgURL = 'https://starwars-visualguide.com/assets/img/vehicles/'
 
-const RepositoryVehiclesHeader = props =>{
+const VehiclesHeader = props =>{
     return (
         <View style={{flexDirection:'row', paddingBottom:2}}>
             <View style={{ flexGrow:0 }}>
@@ -37,12 +37,12 @@ const RepositoryVehiclesHeader = props =>{
                 {/* <StyledText fontWeight='bold'>{props.fullName}</StyledText> */}
                 <StyledText fontWeight='bold'>{props.name.toLocaleUpperCase()}</StyledText>
                 {/* <StyledText color='secondary'>{props.description}</StyledText> */}
-                <StyledText color='secondary'>{props.manufacturer}</StyledText>
+                <StyledText color='secondary'>Mfr.: {props.manufacturer}</StyledText>
                 
                 {/* <StyledText style={styles.language}>{props.language}</StyledText> */}
-                <StyledText style={styles.language}>{props.model}</StyledText>
+                <StyledText style={styles.language}>Model: {props.model}</StyledText>
             </View>
         </View>
     )}
 
-export default RepositoryVehiclesHeader
+export default VehiclesHeader

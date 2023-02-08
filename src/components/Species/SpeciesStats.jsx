@@ -12,17 +12,17 @@ const parseThounsands = value =>{
 const SpeciesStats = props =>{
     return (
     <View style={{flexDirection:'row', justifyContent:'space-around'}}>
-        {/* <View>            
-            <StyledText fontWeight='bold' align='center'> {props.starship_class.charAt(0).toUpperCase()+ props.starship_class.slice(1)}</StyledText>
-            <StyledText align='center'>Class</StyledText>
-            
-        </View>
         <View>            
-            <StyledText fontWeight='bold' align='center'>{props.max_atmosphering_speed}</StyledText>
-            <StyledText >Speed</StyledText>
+            <StyledText fontWeight='bold' align='center'> {props.average_height}</StyledText>
+            <StyledText align='center'>AVG Height</StyledText>
+            
+        </View>        
+        <View>            
+            <StyledText fontWeight='bold' align='center'>{props.classification}</StyledText>
+            <StyledText >Classification</StyledText>
             
         </View>
-        */}
+        
         <View>            
             <StyledText fontWeight='bold' align='center'> {props.designation}</StyledText>
             <StyledText >Designation</StyledText>

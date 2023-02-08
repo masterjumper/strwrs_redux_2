@@ -35,8 +35,8 @@ const SpeciesHeader = props =>{
             </View>
             <View style={{ flex:1, paddingLeft:10 }}>                
                 <StyledText fontWeight='bold'>{props.name.toUpperCase()}</StyledText>                
-                <StyledText color='secondary'>{props.classification}</StyledText>
-                <StyledText style={styles.language}>{props.language}</StyledText>
+                {/* <StyledText color='secondary'>{props.classification}</StyledText> */}
+                <StyledText style={styles.language}>Language: {props.language}</StyledText>
             </View>
         </View>
     )}

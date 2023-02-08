@@ -1,5 +1,8 @@
 
 import React from 'react' 
+//import React, { useEffect, useState}  from 'react';
+//import { useSelector, useDispatch } from 'react-redux';
+//import { getSpecie } from '../../features/peoples/peoplesSlice';
 import {View, Image, StyleSheet} from 'react-native'
 import StyledText from './StyledText'
 import theme from '../../theme'
@@ -23,7 +26,14 @@ const styles = StyleSheet.create({
 })
 const imgURL = 'https://starwars-visualguide.com/assets/img/characters/'
 
+
+
+
 const PeoplesHeader = props =>{
+    //let dispatch = useDispatch();
+    //const specie_found = useSelector(state => state.specie)        
+    //dispatch(getSpecie(props.species));          
+    console.log('species '+ props.species)
     return (
         <View style={{flexDirection:'row', paddingBottom:2}}>
             <View style={{ flexGrow:0 }}>
@@ -34,8 +44,8 @@ const PeoplesHeader = props =>{
             <View style={{ flex:1, paddingLeft:10 }}>
                 {/* <StyledText fontWeight='bold'>{props.fullName}</StyledText> */}
                 <StyledText fontWeight='bold'>{props.name.toLocaleUpperCase()}</StyledText>
-                {/* <StyledText color='secondary'>{props.description}</StyledText> */}
-                <StyledText style={styles.language}> Gender:{props.gender.charAt(0).toUpperCase()+ props.gender.slice(1)}</StyledText>
+                <StyledText color='secondary'>Gender: {props.gender}</StyledText>
+                <StyledText style={styles.language}> Specie: {props.species == '' ? 'N/a' : props.specie}</StyledText>
                 {/* <StyledText color='secondary'> {props.gender.charAt(0).toUpperCase()+ props.gender.slice(1)}</StyledText> */}
                 
                 {/* <StyledText style={styles.language}>{props.language}</StyledText> */}

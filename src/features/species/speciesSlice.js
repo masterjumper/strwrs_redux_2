@@ -44,12 +44,12 @@ export const speciesSlice = createSlice(
           state.filtered = [];
           state.filtered = [...state.data];          
           state.loading = false; 
-        }
+        }        
       //other action item of list: something     
     },
   })
 
-  export const getSpeciesAsync = (url) => async (dispatch) => {    
+  export const getAsync = (url) => async (dispatch) => {    
     if(url){            
       try {                    
           const response = await axios.get(url)
@@ -66,7 +66,7 @@ export const speciesSlice = createSlice(
     }else{dispatch(setRefresh(false))}
   }
 
-export const getSpeciesAsync_fil=(fil, lista) => (dispatch) =>{  
+export const get_fil=(fil, lista) => (dispatch) =>{  
   if(fil){    
       const filtered =  lista.master.filter(
             (item) => item.name.toUpperCase().includes(fil.toUpperCase())
@@ -75,7 +75,7 @@ export const getSpeciesAsync_fil=(fil, lista) => (dispatch) =>{
   }
 }
 
-export const getSpeciesAsync_all = () => (dispatch) =>{  
+export const get_all = () => (dispatch) =>{  
   dispatch(getListAll())
 }
 // Action creators are generated for each case reducer function  

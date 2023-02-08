@@ -5,7 +5,7 @@ import axios from 'axios'
 export const vehiclesSlice = createSlice(
  
   {
-    name: 'peoples',
+    name: 'vehicles',
     initialState:{
         page: null,
         data:[],

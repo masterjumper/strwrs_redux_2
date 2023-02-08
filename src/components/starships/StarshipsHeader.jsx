@@ -35,10 +35,10 @@ const StarshipsHeader = props =>{
                 {/* <StyledText fontWeight='bold'>{props.fullName}</StyledText> */}
                 <StyledText fontWeight='bold'>{props.name.toLocaleUpperCase()}</StyledText>
                 {/* <StyledText color='secondary'>{props.description}</StyledText> */}
-                <StyledText color='secondary'>{props.manufacturer}</StyledText>
+                <StyledText color='secondary'>Mfr.: {props.manufacturer}</StyledText>
                 
                 {/* <StyledText style={styles.language}>{props.language}</StyledText> */}
-                <StyledText style={styles.language}>{props.model}</StyledText>
+                <StyledText style={styles.language}>Model: {props.model}</StyledText>
             </View>
         </View>
     )}

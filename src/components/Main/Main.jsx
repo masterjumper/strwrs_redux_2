@@ -3,13 +3,13 @@ import { View } from 'react-native';
 /* import AppBar from './AppBar';
 import LoginPage from '../pages/Login'*/
 import { Routes, Route}  from 'react-router-native';
-/* import FilmsList from '../Films/FilmsList' */
-import SpeciesList from '../Species/SpeciesList'
+
+import SpeciesList from '../species/SpeciesList'
 import StarshipsList from '../starships/StarshipsList'
 import PlanetsList from '../planets/PlanetsList'
 import PeoplesList from '../peoples/PeoplesList'
 import VehiclesList from '../vehicles/VehiclesList'
-/* import PeoplesList from '../Peoples/PeoplesList' */
+
 import AppBar from '../AppBars/AppBar'
 import Home from '../Home/Home'
 
