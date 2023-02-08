@@ -16,7 +16,7 @@ export const peoplesSlice = createSlice(
         previous:null,
         refreshing:false,
         count:null,
-        specie:null,        
+        //specie:null,        
     },
     reducers: {
         getList: (state, action) => {
@@ -46,9 +46,9 @@ export const peoplesSlice = createSlice(
           state.filtered = [...state.data];          
           state.loading = false; 
         },
-        getSpecie:(state, action)=>{
+       /*  getSpecie:(state, action)=>{
           state.data = [{specie: action.payload}];
-        }
+        } */
       //other action item of list: something     
     },
   })
@@ -63,7 +63,7 @@ export const getAsync = (url) => async (dispatch) => {
                                         dispatch(setRefresh(true))
                                         dispatch(setCount(res.data.count))
                                         dispatch(setPrevious(res.data.previous))
-                                        res.data.results.map((item) => {
+                                        /* res.data.results.map((item) => {
                                             if(item.species.length > 0){                                              
                                               item.species.map((it) =>{
                                                 console.log(it)
@@ -75,7 +75,7 @@ export const getAsync = (url) => async (dispatch) => {
                                                     })                                                  
                                             }
                                           }
-                                        )                                          
+                                        )                    */                       
                                       })
     } catch (err) {
       throw new Error(err);
