@@ -3,7 +3,7 @@ import React from 'react'
 //import React, { useEffect, useState}  from 'react';
 //import { useSelector, useDispatch } from 'react-redux';
 //import { getSpecie } from '../../features/peoples/peoplesSlice';
-import {View, Image, StyleSheet} from 'react-native'
+import {View, Image, StyleSheet, ImageBackground} from 'react-native'
 import StyledText from './StyledText'
 import theme from '../../theme'
 
@@ -25,21 +25,24 @@ const styles = StyleSheet.create({
     }
 })
 const imgURL = 'https://starwars-visualguide.com/assets/img/characters/'
-
+//let dispatch = useDispatch();
 
 
 
 const PeoplesHeader = props =>{
-    //let dispatch = useDispatch();
+    
     //const specie_found = useSelector(state => state.specie)        
-    //dispatch(getSpecie(props.species));          
-    console.log('species '+ props.species)
+            
+    //console.log('species '+ props.species)
+
     return (
         <View style={{flexDirection:'row', paddingBottom:2}}>
             <View style={{ flexGrow:0 }}>
-                <Image style={styles.image} source= {{ uri:
-                `${imgURL + props.url.split('/')[props.url.split('/').length - 2]}.jpg`
+                <ImageBackground source= {{ uri:  `https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
+                    <Image style={styles.image} source= {{ uri: 
+                        `${imgURL + props.url.split('/')[props.url.split('/').length - 2]}.jpg`
                      }}></Image>
+                </ImageBackground>
             </View>
             <View style={{ flex:1, paddingLeft:10 }}>
                 {/* <StyledText fontWeight='bold'>{props.fullName}</StyledText> */}

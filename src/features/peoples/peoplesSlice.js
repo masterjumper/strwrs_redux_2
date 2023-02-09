@@ -46,9 +46,9 @@ export const peoplesSlice = createSlice(
           state.filtered = [...state.data];          
           state.loading = false; 
         },
-       /*  getSpecie:(state, action)=>{
+        getSpecie:(state, action)=>{
           state.data = [{specie: action.payload}];
-        } */
+        } 
       //other action item of list: something     
     },
   })
@@ -63,7 +63,7 @@ export const getAsync = (url) => async (dispatch) => {
                                         dispatch(setRefresh(true))
                                         dispatch(setCount(res.data.count))
                                         dispatch(setPrevious(res.data.previous))
-                                        /* res.data.results.map((item) => {
+                                         /* res.data.results.map((item) => {
                                             if(item.species.length > 0){                                              
                                               item.species.map((it) =>{
                                                 console.log(it)
@@ -74,8 +74,7 @@ export const getAsync = (url) => async (dispatch) => {
                                                             }) 
                                                     })                                                  
                                             }
-                                          }
-                                        )                    */                       
+                                          }) */                                        
                                       })
     } catch (err) {
       throw new Error(err);
@@ -102,18 +101,17 @@ export const get_all = () => (dispatch) =>{
         console.log('url '+ url)
         const response = await axios.get(url)
                                       .then((res) => {                                                                             
-                                        dispatch(getSpecie(res.data.results.name))                                                                                                                       
+                                        dispatch(getSpecie(res.data.name))                                                                                                                       
                                          res.data.results.map((item) => {
                                             console.log(item.species)
-                                          }
+                                          } 
                                         )
                                       })
     } catch (err) {
       throw new Error(err);
     }
   }else{dispatch(setRefresh(false))}
-} */
-
+}  */
 
 // Action creators are generated for each case reducer function  
 export const { getList, setNext, setRefresh, setCount, setPrevious, getListFil, getListAll, getSpecie } = peoplesSlice.actions
