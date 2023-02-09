@@ -1,14 +1,11 @@
 import React from "react"
 import { View , StyleSheet} from "react-native"
-//import StyledText from './StyledText'
-import SpeciesHeader from './SpeciesHeader'
-import SpeciesStats from './SpeciesStats'
+import StyledText from './StyledText'
 import theme from "../../theme"
 
-const Species = props => (    
+const SpeciesDetail = props => (    
     <View key={props.id} style={styles.container}>
-            <SpeciesHeader {...props}/>
-            <SpeciesStats {...props}/>
+            <Text>Detail</Text>
     </View>
 )
 
@@ -38,4 +35,4 @@ const styles = StyleSheet.create({
     }
 
 })
-export default Species
+export default SpeciesDetail

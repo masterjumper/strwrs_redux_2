@@ -10,6 +10,8 @@ import PlanetsList from '../planets/PlanetsList'
 import PeoplesList from '../peoples/PeoplesList'
 import VehiclesList from '../vehicles/VehiclesList'
 
+import SpeciesDetail from '../species/speciesdetail';
+
 import AppBar from '../AppBars/AppBar'
 import Home from '../Home/Home'
 
@@ -44,7 +46,13 @@ const Main = () => {
                     path="vehicles" 
                     element={<VehiclesList />} 
                     > 
-                </Route>           
+                </Route>
+
+               <Route 
+                    path="speciesdetail" 
+                    element={<SpeciesDetail />} 
+                > 
+                </Route>  
             </Routes>        
         </View>
     ) 

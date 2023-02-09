@@ -17,7 +17,8 @@
     "react-native": "0.70.5",
     "react-redux": "^8.0.5",
     "react-router-native": "^6.6.2",
-    "redux": "^4.2.0"
+    "redux": "^4.2.0",
+    "react-native-web": "~0.18.7"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

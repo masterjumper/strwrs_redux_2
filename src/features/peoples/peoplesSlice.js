@@ -16,14 +16,16 @@ export const peoplesSlice = createSlice(
         previous:null,
         refreshing:false,
         count:null,
-        //specie:null,        
+        specie:null,        
     },
     reducers: {
         getList: (state, action) => {
             state.data = [...state.data, ...action.payload];            
+            //state.data.specie = [{'specie':'N/A'}];
             state.filtered = [...state.data, ...action.payload];
             state.master = [...state.data, ...action.payload];
             state.loading = true;
+           
             },
         setNext:(state, action)=>{
           state.next = action.payload
@@ -46,8 +48,9 @@ export const peoplesSlice = createSlice(
           state.filtered = [...state.data];          
           state.loading = false; 
         },
-        getSpecie:(state, action)=>{
-          state.data = [{specie: action.payload}];
+        getSpecie:(state, action)=>{          
+          state.specie = action.payload;
+          //console.log('state.data ' + action.payload)
         } 
       //other action item of list: something     
     },
@@ -62,19 +65,7 @@ export const getAsync = (url) => async (dispatch) => {
                                         dispatch(setNext(res.data.next))
                                         dispatch(setRefresh(true))
                                         dispatch(setCount(res.data.count))
-                                        dispatch(setPrevious(res.data.previous))
-                                         /* res.data.results.map((item) => {
-                                            if(item.species.length > 0){                                              
-                                              item.species.map((it) =>{
-                                                console.log(it)
-                                                 const respon = axios.get(it)
-                                                            .then((r) => {
-                                                              console.log(r.data.name)                                                                              
-                                                              dispatch(getSpecie(r.data.name))                                                                                           
-                                                            }) 
-                                                    })                                                  
-                                            }
-                                          }) */                                        
+                                        dispatch(setPrevious(res.data.previous))                                        
                                       })
     } catch (err) {
       throw new Error(err);
@@ -95,23 +86,19 @@ export const get_all = () => (dispatch) =>{
   dispatch(getListAll())
 }
 
-/* export const get_specie = (url) => async (dispatch) => {    
+export const get_specie = (url) => async (dispatch) => {    
   if(url){            
     try {                    
-        console.log('url '+ url)
+        //console.log('url '+ url)
         const response = await axios.get(url)
-                                      .then((res) => {                                                                             
-                                        dispatch(getSpecie(res.data.name))                                                                                                                       
-                                         res.data.results.map((item) => {
-                                            console.log(item.species)
-                                          } 
-                                        )
+                                      .then((res) => {                                         
+                                        dispatch(getSpecie(res.data.name))
                                       })
     } catch (err) {
       throw new Error(err);
     }
   }else{dispatch(setRefresh(false))}
-}  */
+} 
 
 // Action creators are generated for each case reducer function  
 export const { getList, setNext, setRefresh, setCount, setPrevious, getListFil, getListAll, getSpecie } = peoplesSlice.actions

@@ -1,5 +1,5 @@
 import React, { useEffect, useState}  from 'react';
-import {SafeAreaView, FlatList, View, StyleSheet, TextInput, ActivityIndicator } from 'react-native';
+import {SafeAreaView, FlatList, View, StyleSheet, TextInput, ActivityIndicator, TouchableWithoutFeedback } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAsync, get_fil, get_all } from '../../features/species/speciesSlice';
 import Species from './Species';
@@ -44,6 +44,10 @@ const SpeciesList = () => {
     }  
   }
 
+  /* const doSometing = async () => {
+    console.log('Click')
+  }; */
+
   return (
     <SafeAreaView>
         <View styles={styles.container}> 
@@ -64,7 +68,7 @@ const SpeciesList = () => {
             keyExtractor={(item, index) => index.toString()}
             ListFooterComponent={renderLoader}                        
             onEndReached = {loadMoreItems}
-            onEndReachedThreshold={0.5} 
+            onEndReachedThreshold={0.5}
             refreshing={list.refreshing}                       
         />
         </View>    

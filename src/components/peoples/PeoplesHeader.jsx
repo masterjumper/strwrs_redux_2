@@ -2,7 +2,7 @@
 import React from 'react' 
 //import React, { useEffect, useState}  from 'react';
 //import { useSelector, useDispatch } from 'react-redux';
-//import { getSpecie } from '../../features/peoples/peoplesSlice';
+//import { get_specie } from '../../features/peoples/peoplesSlice';
 import {View, Image, StyleSheet, ImageBackground} from 'react-native'
 import StyledText from './StyledText'
 import theme from '../../theme'
@@ -24,18 +24,19 @@ const styles = StyleSheet.create({
         borderRadius:4,
     }
 })
+
 const imgURL = 'https://starwars-visualguide.com/assets/img/characters/'
-//let dispatch = useDispatch();
-
-
 
 const PeoplesHeader = props =>{
-    
-    //const specie_found = useSelector(state => state.specie)        
-            
-    //console.log('species '+ props.species)
-
-    return (
+/*  const specie_found = useSelector(state => state.peoples.specie)                    
+     let dispatch = useDispatch();
+    useEffect(() => { 
+        if(props.species[0]){
+          dispatch(get_specie(props.species[0]));      
+        }
+      },[dispatch, props.species[0]]);
+*/
+    return (        
         <View style={{flexDirection:'row', paddingBottom:2}}>
             <View style={{ flexGrow:0 }}>
                 <ImageBackground source= {{ uri:  `https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
@@ -44,15 +45,12 @@ const PeoplesHeader = props =>{
                      }}></Image>
                 </ImageBackground>
             </View>
-            <View style={{ flex:1, paddingLeft:10 }}>
-                {/* <StyledText fontWeight='bold'>{props.fullName}</StyledText> */}
+            <View style={{ flex:1, paddingLeft:10 }}>                
                 <StyledText fontWeight='bold'>{props.name.toLocaleUpperCase()}</StyledText>
                 <StyledText color='secondary'>Gender: {props.gender}</StyledText>
-                <StyledText style={styles.language}> Specie: {props.species == '' ? 'N/a' : props.specie}</StyledText>
-                {/* <StyledText color='secondary'> {props.gender.charAt(0).toUpperCase()+ props.gender.slice(1)}</StyledText> */}
-                
-                {/* <StyledText style={styles.language}>{props.language}</StyledText> */}
-                {/* <StyledText style={styles.language}>{props.terrain.charAt(0).toUpperCase()+ props.terrain.slice(1)}</StyledText> */}
+                <StyledText style={styles.language}> Specie: {'N/a'}{/* props.species[0] == '' ? 'n/a' : props.species[0] */}</StyledText>
+                {/* <StyledText color='secondary'> {props.gender.charAt(0).toUpperCase()+ props.gender.slice(1)}</StyledText> */}                
+                {/* <StyledText style={styles.language}>{props.language}</StyledText> */}                
             </View>
         </View>
     )}

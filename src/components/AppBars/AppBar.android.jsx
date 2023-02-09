@@ -54,7 +54,7 @@ const AppBar = () => {
         <AppBarTab active to="/starships">Starships</AppBarTab>
         <AppBarTab active to="/planets">Planets</AppBarTab>
         <AppBarTab active to="/peoples">Peoples</AppBarTab>
-        <AppBarTab active to="/vehicles">Vehicles</AppBarTab>
+        <AppBarTab active to="/vehicles">Vehicles</AppBarTab>        
       </ScrollView>
     </View>)
 }
