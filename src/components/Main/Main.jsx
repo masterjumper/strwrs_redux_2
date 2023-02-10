@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 /* import AppBar from './AppBar';
 import LoginPage from '../pages/Login'*/
-import { Routes, Route}  from 'react-router-native';
+import {Routes, Route}  from 'react-router-native';
 
 import SpeciesList from '../species/SpeciesList'
 import StarshipsList from '../starships/StarshipsList'
@@ -47,14 +47,15 @@ const Main = () => {
                     element={<VehiclesList />} 
                     > 
                 </Route>
-
-               <Route 
+                <Route 
                     path="speciesdetail" 
                     element={<SpeciesDetail />} 
-                > 
+                    > 
                 </Route>  
             </Routes>        
+            
         </View>
+        
     ) 
 }
 

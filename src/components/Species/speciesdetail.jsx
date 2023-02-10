@@ -1,13 +1,16 @@
-import React from "react"
-import { View , StyleSheet} from "react-native"
+import React,{ useState} from "react"
+import { View , StyleSheet,Text} from "react-native"
 import StyledText from './StyledText'
 import theme from "../../theme"
 
-const SpeciesDetail = props => (    
-    <View key={props.id} style={styles.container}>
+const SpeciesDetail = (props) => {
+    console.log(props)
+    return (    
+        <View style={styles.container}>
             <Text>Detail</Text>
-    </View>
-)
+        </View>
+    )
+}
 
 const styles = StyleSheet.create({
     container:{

@@ -1,9 +1,10 @@
 import React, { useEffect, useState}  from 'react';
-import {SafeAreaView, FlatList, View, StyleSheet, TextInput, ActivityIndicator, TouchableWithoutFeedback } from 'react-native';
+import {SafeAreaView, FlatList, View, StyleSheet, TextInput, ActivityIndicator, TouchableOpacity, TouchableHighlight } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAsync, get_fil, get_all } from '../../features/species/speciesSlice';
 import Species from './Species';
 import url from '../../constants/url';
+import { Link} from 'react-router-native';
 
 const SpeciesList = () => {
   const[search, setSearch] = useState([]);
@@ -43,11 +44,7 @@ const SpeciesList = () => {
       dispatch(get_all());
     }  
   }
-
-  /* const doSometing = async () => {
-    console.log('Click')
-  }; */
-
+  
   return (
     <SafeAreaView>
         <View styles={styles.container}> 
@@ -62,8 +59,10 @@ const SpeciesList = () => {
         <FlatList contentContainerStyle={{ paddingBottom: 250 }}            
             data={list.filtered.map((item)=>item)}
             ItemSeparatorComponent={ItemSeparator}
-            renderItem={({ item:item }) => (
-              <Species {...item} />
+            renderItem={({ item:item }) => (                                
+                  <Link to={{ pathname:'/speciesdetail', state:{...item} }} component={TouchableHighlight} >                    
+                    <Species {...item} />
+                   </Link>
             )}            
             keyExtractor={(item, index) => index.toString()}
             ListFooterComponent={renderLoader}                        
