@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAsync, get_fil, get_all } from '../../features/starships/starshipsSlice';
 import Starships from './Starships';
 import url from '../../constants/url';
+import { Link } from 'react-router-native';
 
 const StarshipsList = () => {
   const[search, setSearch] = useState([]);
@@ -59,7 +60,9 @@ const StarshipsList = () => {
             data={list.filtered.map((item)=>item)}
             ItemSeparatorComponent={ItemSeparator}
             renderItem={({ item:item }) => (
-              <Starships {...item} />
+              <Link to={'/starshipsdetail'} state={{item}}>
+                <Starships {...item} />
+              </Link>
             )}            
             keyExtractor={(item, index) => index.toString()}
             ListFooterComponent={renderLoader}                        

@@ -9,10 +9,9 @@ import StarshipsList from '../starships/StarshipsList'
 import PlanetsList from '../planets/PlanetsList'
 import PeoplesList from '../peoples/PeoplesList'
 import VehiclesList from '../vehicles/VehiclesList'
-
-import SpeciesDetail from '../species/speciesdetail';
-
-
+import SpeciesDetail from '../species/SpeciesDetail'
+import PlanetsDetail from '../planets/PlanetsDetail'
+import StarshipsDetail from '../starships/StarshipsDetail';
 
 import AppBar from '../AppBars/AppBar'
 import Home from '../Home/Home'
@@ -53,12 +52,19 @@ const Main = () => {
                     path="speciesdetail" 
                     element={<SpeciesDetail />} 
                     > 
-                </Route>  
-            </Routes>        
-            
+                </Route>
+                <Route 
+                    path="planetsdetail" 
+                    element={<PlanetsDetail />} 
+                    > 
+                </Route>
+                <Route 
+                    path="starshipsdetail" 
+                    element={<StarshipsDetail />} 
+                    > 
+                </Route>                
+            </Routes> 
         </View>
-        
     ) 
 }
-
 export default Main

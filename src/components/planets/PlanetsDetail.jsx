@@ -4,14 +4,16 @@ import StyledText from './StyledText'
 import theme from "../../theme"
 import {useLocation, useNavigate } from 'react-router-native'; 
 
-const imgURL = 'https://starwars-visualguide.com/assets/img/species/'
+const imgURL = 'https://starwars-visualguide.com/assets/img/planets/'
 
-const SpeciesDetail = (props) => {
-    let specie = useLocation()
+const PlanetsDetail = (props) => {
+    let planet = useLocation()
     let navigate = useNavigate ()
+    
     useEffect(() => {
+        
         const backAction = () => {
-         navigate('/species')          
+         navigate('/planets')          
         };
 
         const backHandler = BackHandler.addEventListener(
@@ -30,41 +32,39 @@ const SpeciesDetail = (props) => {
                 <View style={{ flexGrow:0 }}>
                 <ImageBackground source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
                 {<Image style={styles.image} source= {{ uri:
-                    `${imgURL + specie.state.item.url.split('/')[specie.state.item.url.split('/').length - 2]}.jpg`
+                    `${imgURL + planet.state.item.url.split('/')[planet.state.item.url.split('/').length - 2]}.jpg`
                         }}></Image>}
                 </ImageBackground>         
                 </View>
                 <View style={{ flex:1, paddingLeft:10 }}>                
-                    <StyledText style={styles.language} fontWeight='bold'>{specie.state.item.name.toUpperCase()}</StyledText>                                    
+                    <StyledText style={styles.language} fontWeight='bold'>{planet.state.item.name.toUpperCase()}</StyledText>                                    
                 </View>   
             </View>
             <View style={{justifyContent:'space-around'}}>
-
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Language:</StyledText><Text>  {specie.state.item.language}</Text>
+                    <StyledText fontWeight='bold'>Terrain:</StyledText><Text>  {planet.state.item.terrain}</Text>
                 </View>
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold' >AVG Height:</StyledText><Text> {parseHigth(specie.state.item.average_height)}</Text>
+                    <StyledText fontWeight='bold'>Climate:</StyledText><Text>  {planet.state.item.climate}</Text>
+                </View>
+                <View style={{flexDirection:'row'}}>            
+                    <StyledText fontWeight='bold' >Diameter:</StyledText><Text> {planet.state.item.diameter}{planet.state.item.diameter == 'unknown' ? '' : 'Kms'} </Text>
                 </View>        
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Classification:</StyledText><Text> {specie.state.item.classification}</Text>
+                    <StyledText fontWeight='bold'>Orbital Period:</StyledText><Text> {planet.state.item.orbital_period} {planet.state.item.orbital_period == 'unknown' ? ' ' : planet.state.item.orbital_period > 1 ? ' days' : ' day'} </Text>
                 </View>
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Designation:</StyledText><Text> {specie.state.item.designation}</Text>
+                    <StyledText fontWeight='bold'>Gravity:</StyledText><Text> {planet.state.item.gravity}</Text>
                 </View> 
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>AVG lifespan:</StyledText><Text> {specie.state.item.average_lifespan} yrs.</Text>
+                    <StyledText fontWeight='bold'>Population:</StyledText><Text> {planet.state.item.population}</Text>
                 </View>                                
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Eye Colors:</StyledText><Text> {specie.state.item.eye_colors}</Text>
+                    <StyledText fontWeight='bold'>Rotation Period:</StyledText><Text> {planet.state.item.rotation_period} {planet.state.item.rotation_period =='unknown' ? '' : 'hours'}</Text>
                 </View>
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Hair Colors:</StyledText><Text> {specie.state.item.hair_colors}</Text>
-                </View>
-                <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Skin Colors:</StyledText><Text> {specie.state.item.skin_colors}</Text>
-                </View>
-                
+                    <StyledText fontWeight='bold'>Surface Water:</StyledText><Text> {planet.state.item.surface_water}{planet.state.item.surface_water == 'unknown' ? '' : '%' }</Text>
+                </View>                
             </View>
         </View>
 
@@ -104,14 +104,11 @@ const parseThounsands = value =>{
 const parseHigth = value =>{
     //
     return value == 'unknown' ? String(value) : 
-
         /* value >= 1000000000000 ? `${Math.round(value/1000000000000)}B` : 
-
         value >= 1000000 ? `${Math.round(value/1000000)}M` :  */
-
-         `${Math.round(value/10)/10} mts.` 
+         `${Math.round(value/10)/10}` 
 
     
 }
 
-export default SpeciesDetail
+export default PlanetsDetail

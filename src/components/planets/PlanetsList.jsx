@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAsync, get_fil, get_all } from '../../features/planets/planetsSlice';
 import Planets from './Planets';
 import url from '../../constants/url';
+import {Link} from 'react-router-native';
 
 const PlanetsList = () => {
   const[search, setSearch] = useState([]);
@@ -58,8 +59,10 @@ const PlanetsList = () => {
         <FlatList contentContainerStyle={{ paddingBottom: 250 }}            
             data={list.filtered.map((item)=>item)}
             ItemSeparatorComponent={ItemSeparator}
-            renderItem={({ item:item }) => (
-              <Planets {...item} />
+            renderItem={({ item:item }) => (              
+              <Link to={'/planetsdetail'} state={{item}}  > 
+                <Planets {...item} />      
+              </Link>
             )}            
             keyExtractor={(item, index) => index.toString()}
             ListFooterComponent={renderLoader}                        

@@ -59,9 +59,9 @@ const SpeciesList = () => {
         <FlatList contentContainerStyle={{ paddingBottom: 250 }}            
             data={list.filtered.map((item)=>item)}
             ItemSeparatorComponent={ItemSeparator}
-            renderItem={({ item:itemOne }) => (
-                  <Link to={'/speciesdetail'} state={{itemOne}}  > 
-                    <Species {...itemOne} />
+            renderItem={({ item:item }) => (
+                  <Link to={'/speciesdetail'} state={{item}}  > 
+                    <Species {...item} />
                    </Link>
             )}            
             keyExtractor={(item, index) => index.toString()}

@@ -4,14 +4,16 @@ import StyledText from './StyledText'
 import theme from "../../theme"
 import {useLocation, useNavigate } from 'react-router-native'; 
 
-const imgURL = 'https://starwars-visualguide.com/assets/img/species/'
+const imgURL = 'https://starwars-visualguide.com/assets/img/starships/'
 
-const SpeciesDetail = (props) => {
-    let specie = useLocation()
+const StarshipsDetail = (props) => {
+    let starship = useLocation()
     let navigate = useNavigate ()
+    
     useEffect(() => {
+        console.log(starship)
         const backAction = () => {
-         navigate('/species')          
+         navigate('/planets')          
         };
 
         const backHandler = BackHandler.addEventListener(
@@ -21,8 +23,6 @@ const SpeciesDetail = (props) => {
     
         return () => backHandler.remove();
       }, []);
-    
-
 
     return (    
         <View style={styles.container}>
@@ -30,41 +30,45 @@ const SpeciesDetail = (props) => {
                 <View style={{ flexGrow:0 }}>
                 <ImageBackground source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
                 {<Image style={styles.image} source= {{ uri:
-                    `${imgURL + specie.state.item.url.split('/')[specie.state.item.url.split('/').length - 2]}.jpg`
+                    `${imgURL + starship.state.item.url.split('/')[starship.state.item.url.split('/').length - 2]}.jpg`
                         }}></Image>}
                 </ImageBackground>         
                 </View>
                 <View style={{ flex:1, paddingLeft:10 }}>                
-                    <StyledText style={styles.language} fontWeight='bold'>{specie.state.item.name.toUpperCase()}</StyledText>                                    
+                    <StyledText style={styles.language} fontWeight='bold'>{starship.state.item.name.toUpperCase()}</StyledText>                                    
                 </View>   
             </View>
             <View style={{justifyContent:'space-around'}}>
-
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Language:</StyledText><Text>  {specie.state.item.language}</Text>
+                    <StyledText fontWeight='bold'>Manufacturer:</StyledText><Text>  {starship.state.item.manufacturer}</Text>
                 </View>
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold' >AVG Height:</StyledText><Text> {parseHigth(specie.state.item.average_height)}</Text>
+                    <StyledText fontWeight='bold'>Model:</StyledText><Text>  {starship.state.item.model}</Text>
+                </View>
+                <View style={{flexDirection:'row'}}>            
+                    <StyledText fontWeight='bold' >Class:</StyledText><Text> {starship.state.item.starship_class}</Text>
                 </View>        
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Classification:</StyledText><Text> {specie.state.item.classification}</Text>
+                    <StyledText fontWeight='bold'>Speed:</StyledText><Text> {starship.state.item.max_atmosphering_speed}</Text>
                 </View>
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Designation:</StyledText><Text> {specie.state.item.designation}</Text>
+                    <StyledText fontWeight='bold'>Length:</StyledText><Text> {starship.state.item.length}</Text>
                 </View> 
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>AVG lifespan:</StyledText><Text> {specie.state.item.average_lifespan} yrs.</Text>
+                    <StyledText fontWeight='bold'>Passengers:</StyledText><Text> {starship.state.item.passengers}</Text>
                 </View>                                
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Eye Colors:</StyledText><Text> {specie.state.item.eye_colors}</Text>
+                    <StyledText fontWeight='bold'>Cargo Capacity:</StyledText><Text> {starship.state.item.cargo_capacity} {starship.state.item.rotation_period =='unknown' ? '' : 'hours'}</Text>
                 </View>
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Hair Colors:</StyledText><Text> {specie.state.item.hair_colors}</Text>
-                </View>
+                    <StyledText fontWeight='bold'>Consumables:</StyledText><Text> {starship.state.item.consumables}</Text>
+                </View> 
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Skin Colors:</StyledText><Text> {specie.state.item.skin_colors}</Text>
+                    <StyledText fontWeight='bold'>Crew:</StyledText><Text> {starship.state.item.crew}</Text>
+                </View>     
+                <View style={{flexDirection:'row'}}>            
+                    <StyledText fontWeight='bold'>Hyperdrive Rating:</StyledText><Text> {starship.state.item.hyperdrive_rating}</Text>
                 </View>
-                
             </View>
         </View>
 
@@ -104,14 +108,11 @@ const parseThounsands = value =>{
 const parseHigth = value =>{
     //
     return value == 'unknown' ? String(value) : 
-
         /* value >= 1000000000000 ? `${Math.round(value/1000000000000)}B` : 
-
         value >= 1000000 ? `${Math.round(value/1000000)}M` :  */
-
-         `${Math.round(value/10)/10} mts.` 
+         `${Math.round(value/10)/10}` 
 
     
 }
 
-export default SpeciesDetail
+export default StarshipsDetail
