@@ -21,8 +21,6 @@ const SpeciesDetail = (props) => {
     
         return () => backHandler.remove();
       }, []);
-    
-
 
     return (    
         <View style={styles.container}>

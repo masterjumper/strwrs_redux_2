@@ -10,8 +10,7 @@ const StarshipsDetail = (props) => {
     let starship = useLocation()
     let navigate = useNavigate ()
     
-    useEffect(() => {
-        console.log(starship)
+    useEffect(() => {       
         const backAction = () => {
          navigate('/planets')          
         };
@@ -28,7 +27,7 @@ const StarshipsDetail = (props) => {
         <View style={styles.container}>
             <View style={{flexDirection:'row', paddingBottom:1}}>
                 <View style={{ flexGrow:0 }}>
-                <ImageBackground source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
+                <ImageBackground imageStyle={{ borderRadius: 6}} source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
                 {<Image style={styles.image} source= {{ uri:
                     `${imgURL + starship.state.item.url.split('/')[starship.state.item.url.split('/').length - 2]}.jpg`
                         }}></Image>}
@@ -40,7 +39,7 @@ const StarshipsDetail = (props) => {
             </View>
             <View style={{justifyContent:'space-around'}}>
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Manufacturer:</StyledText><Text>  {starship.state.item.manufacturer}</Text>
+                    <StyledText fontWeight='bold'>Manufacturer:</StyledText><StyledText style={{flex:1, paddingLeft:10}}>{starship.state.item.manufacturer}</StyledText>
                 </View>
                 <View style={{flexDirection:'row'}}>            
                     <StyledText fontWeight='bold'>Model:</StyledText><Text>  {starship.state.item.model}</Text>
@@ -58,7 +57,7 @@ const StarshipsDetail = (props) => {
                     <StyledText fontWeight='bold'>Passengers:</StyledText><Text> {starship.state.item.passengers}</Text>
                 </View>                                
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Cargo Capacity:</StyledText><Text> {starship.state.item.cargo_capacity} {starship.state.item.rotation_period =='unknown' ? '' : 'hours'}</Text>
+                    <StyledText fontWeight='bold'>Cargo Capacity:</StyledText><Text> {starship.state.item.cargo_capacity}</Text>
                 </View>
                 <View style={{flexDirection:'row'}}>            
                     <StyledText fontWeight='bold'>Consumables:</StyledText><Text> {starship.state.item.consumables}</Text>
@@ -95,6 +94,11 @@ const styles = StyleSheet.create({
         width:150,
         height:150,
         borderRadius:4,
+    },
+    model:{
+        alignSelf:'flex-start',
+        overflow:'hidden',     
+        justifyContent:'space-around'   
     }
 })
 
