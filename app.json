@@ -1,16 +1,17 @@
 {
   "expo": {
-    "name": "strwrsredux",
-    "slug": "strwrsredux",
+    "name": "Star Wars List",
+    "slug": "strwrsLst",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/home.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "preview": {},
     "updates": {
       "fallbackToCacheTimeout": 0
     },
@@ -18,16 +19,23 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.smuguerza.strwrsLst"
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/darth.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.smuguerza.strwrsLst"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "32a35968-38ea-4a36-a4fa-581c098b504d"
+      }
     }
   }
 }

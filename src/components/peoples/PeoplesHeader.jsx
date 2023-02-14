@@ -39,7 +39,7 @@ const PeoplesHeader = props =>{
     return (        
         <View style={{flexDirection:'row', paddingBottom:2}}>
             <View style={{ flexGrow:0 }}>
-                <ImageBackground source= {{ uri:  `https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
+                <ImageBackground imageStyle={{ borderRadius: 6}} source= {{ uri:  `https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
                     <Image style={styles.image} source= {{ uri: 
                         `${imgURL + props.url.split('/')[props.url.split('/').length - 2]}.jpg`
                      }}></Image>
@@ -48,7 +48,8 @@ const PeoplesHeader = props =>{
             <View style={{ flex:1, paddingLeft:10 }}>                
                 <StyledText fontWeight='bold'>{props.name.toLocaleUpperCase()}</StyledText>
                 <StyledText color='secondary'>Gender: {props.gender}</StyledText>
-                <StyledText style={styles.language}> Specie: {'N/a'}{/* props.species[0] == '' ? 'n/a' : props.species[0] */}</StyledText>
+                <StyledText style={styles.language}> Birth Year: {props.birth_year}</StyledText>
+                {/* props.species[0] == '' ? 'n/a' : props.species[0] */}
                 {/* <StyledText color='secondary'> {props.gender.charAt(0).toUpperCase()+ props.gender.slice(1)}</StyledText> */}                
                 {/* <StyledText style={styles.language}>{props.language}</StyledText> */}                
             </View>

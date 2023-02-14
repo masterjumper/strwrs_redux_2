@@ -4,14 +4,16 @@ import StyledText from './StyledText'
 import theme from "../../theme"
 import {useLocation, useNavigate } from 'react-router-native'; 
 
-const imgURL = 'https://starwars-visualguide.com/assets/img/species/'
+const imgURL = 'https://starwars-visualguide.com/assets/img/characters/'
 
-const SpeciesDetail = (props) => {
-    let specie = useLocation()
+const PeoplesDetail = (props) => {
+    let people = useLocation()
     let navigate = useNavigate ()
+    
     useEffect(() => {
+        
         const backAction = () => {
-         navigate('/species')          
+         navigate('/peoples')          
         };
 
         const backHandler = BackHandler.addEventListener(
@@ -21,6 +23,8 @@ const SpeciesDetail = (props) => {
     
         return () => backHandler.remove();
       }, []);
+    
+
 
     return (    
         <View style={styles.container}>
@@ -28,41 +32,36 @@ const SpeciesDetail = (props) => {
                 <View style={{ flexGrow:0 }}>
                 <ImageBackground imageStyle={{ borderRadius: 6}} source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
                 {<Image style={styles.image} source= {{ uri:
-                    `${imgURL + specie.state.item.url.split('/')[specie.state.item.url.split('/').length - 2]}.jpg`
+                    `${imgURL + people.state.item.url.split('/')[people.state.item.url.split('/').length - 2]}.jpg`
                         }}></Image>}
                 </ImageBackground>         
                 </View>
                 <View style={{ flex:1, paddingLeft:10 }}>                
-                    <StyledText style={styles.language} fontWeight='bold'>{specie.state.item.name.toUpperCase()}</StyledText>                                    
+                    <StyledText style={styles.language} fontWeight='bold'>{people.state.item.name.toUpperCase()}</StyledText>                                    
                 </View>   
             </View>
             <View style={{justifyContent:'space-around'}}>
-
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Language:</StyledText><Text>  {specie.state.item.language}</Text>
+                    <StyledText fontWeight='bold'>Gender:</StyledText><Text>  {people.state.item.gender}</Text>
                 </View>
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold' >AVG Height:</StyledText><Text> {parseHigth(specie.state.item.average_height)}</Text>
+                    <StyledText fontWeight='bold'>Hair Color:</StyledText><Text>  {people.state.item.hair_color}</Text>
+                </View>
+                <View style={{flexDirection:'row'}}>            
+                    <StyledText fontWeight='bold' >Skin Color:</StyledText><Text> {people.state.item.skin_color}</Text>
                 </View>        
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Classification:</StyledText><Text> {specie.state.item.classification}</Text>
+                    <StyledText fontWeight='bold'>Eyes Color:</StyledText><Text> {people.state.item.eye_color} </Text>
                 </View>
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Designation:</StyledText><Text> {specie.state.item.designation}</Text>
+                    <StyledText fontWeight='bold'>Height:</StyledText><Text> {parseHigth(people.state.item.height)}</Text>
                 </View> 
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>AVG lifespan:</StyledText><Text> {specie.state.item.average_lifespan} yrs.</Text>
+                    <StyledText fontWeight='bold'>Mass:</StyledText><Text> {people.state.item.mass}</Text>
                 </View>                                
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Eye Colors:</StyledText><Text> {specie.state.item.eye_colors}</Text>
-                </View>
-                <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Hair Colors:</StyledText><Text> {specie.state.item.hair_colors}</Text>
-                </View>
-                <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Skin Colors:</StyledText><Text> {specie.state.item.skin_colors}</Text>
-                </View>
-                
+                    <StyledText fontWeight='bold'>Birth Year:</StyledText><Text> {people.state.item.birth_year}</Text>
+                </View>                
             </View>
         </View>
 
@@ -102,14 +101,11 @@ const parseThounsands = value =>{
 const parseHigth = value =>{
     //
     return value == 'unknown' ? String(value) : 
-
         /* value >= 1000000000000 ? `${Math.round(value/1000000000000)}B` : 
-
         value >= 1000000 ? `${Math.round(value/1000000)}M` :  */
-
-         `${Math.round(value/10)/10} mts.` 
+         `${Math.round(value/10)/10}` 
 
     
 }
 
-export default SpeciesDetail
+export default PeoplesDetail

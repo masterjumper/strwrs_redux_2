@@ -12,6 +12,8 @@ import VehiclesList from '../vehicles/VehiclesList'
 import SpeciesDetail from '../species/SpeciesDetail'
 import PlanetsDetail from '../planets/PlanetsDetail'
 import StarshipsDetail from '../starships/StarshipsDetail';
+import PeoplesDetail from '../peoples/PeoplesDetail';
+import VehiclesDetail from '../vehicles/VehiclesDetail';
 
 import AppBar from '../AppBars/AppBar'
 import Home from '../Home/Home'
@@ -62,7 +64,18 @@ const Main = () => {
                     path="starshipsdetail" 
                     element={<StarshipsDetail />} 
                     > 
-                </Route>                
+                </Route>
+                <Route 
+                    path="peoplesdetail" 
+                    element={<PeoplesDetail />} 
+                    > 
+                </Route> 
+                <Route 
+                    path="vehiclesdetail" 
+                    element={<VehiclesDetail />} 
+                    > 
+                </Route> 
+                               
             </Routes> 
         </View>
     ) 

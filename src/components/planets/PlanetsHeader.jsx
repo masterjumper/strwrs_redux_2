@@ -27,7 +27,7 @@ const PlanetsHeader = props =>{
     return (
         <View style={{flexDirection:'row', paddingBottom:2}}>
             <View style={{ flexGrow:0 }}>
-                <ImageBackground source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
+                <ImageBackground imageStyle={{ borderRadius: 6}} source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
                     <Image style={styles.image} source= {{ uri:
                     `${imgURL + props.url.split('/')[props.url.split('/').length - 2]}.jpg`
                         }}></Image>

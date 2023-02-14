@@ -12,7 +12,7 @@ const StarshipsDetail = (props) => {
     
     useEffect(() => {       
         const backAction = () => {
-         navigate('/planets')          
+         navigate('/starships')          
         };
 
         const backHandler = BackHandler.addEventListener(
@@ -34,7 +34,7 @@ const StarshipsDetail = (props) => {
                 </ImageBackground>         
                 </View>
                 <View style={{ flex:1, paddingLeft:10 }}>                
-                    <StyledText style={styles.language} fontWeight='bold'>{starship.state.item.name.toUpperCase()}</StyledText>                                    
+                    <StyledText style={styles.language} fontWeight='bold' align={'center'}>{starship.state.item.name.toUpperCase()}</StyledText>                                    
                 </View>   
             </View>
             <View style={{justifyContent:'space-around'}}>
@@ -88,7 +88,8 @@ const styles = StyleSheet.create({
         marginTop:4,
         marginBottom:4,
         borderRadius:4,
-        overflow:'hidden'        
+        overflow:'hidden'
+                
     },
     image:{
         width:150,

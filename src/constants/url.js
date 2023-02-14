@@ -1,9 +1,9 @@
 
 export default {
-    urlspecies:'https://swapi.dev/api/species/?page=&format=json',    
-    urlstarships:'https://swapi.dev/api/starships/?page=&format=json',
-    urlplanets:'https://swapi.dev/api/planets/?page=&format=json',
-    urlpeoples:'https://swapi.dev/api/people/?page=&format=json',
-    urlvehicles:'https://swapi.dev/api/vehicles/?page=&format=json',
+    urlspecies:'https://swapi.py4e.com/api/species/?page=&format=json',    
+    urlstarships:'https://swapi.py4e.com/api/starships/?page=&format=json',
+    urlplanets:'https://swapi.py4e.com/api/planets/?page=&format=json',
+    urlpeoples:'https://swapi.py4e.com/api/people/?page=&format=json',
+    urlvehicles:'https://swapi.py4e.com/api/vehicles/?page=&format=json',
 }
 

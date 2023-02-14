@@ -30,7 +30,7 @@ const PlanetsDetail = (props) => {
         <View style={styles.container}>
             <View style={{flexDirection:'row', paddingBottom:1}}>
                 <View style={{ flexGrow:0 }}>
-                <ImageBackground source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
+                <ImageBackground imageStyle={{ borderRadius: 6}} source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
                 {<Image style={styles.image} source= {{ uri:
                     `${imgURL + planet.state.item.url.split('/')[planet.state.item.url.split('/').length - 2]}.jpg`
                         }}></Image>}

@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAsync, get_fil, get_all } from '../../features/vehicles/vehiclesSlice';
 import Vehicles from './Vehicles';
 import url from '../../constants/url';
+import { Link } from 'react-router-native';
 
 const VehiclesList = () => {
   const[search, setSearch] = useState([]);
@@ -59,7 +60,9 @@ const VehiclesList = () => {
             data={list.filtered.map((item)=>item)}
             ItemSeparatorComponent={ItemSeparator}
             renderItem={({ item:item }) => (
-              <Vehicles {...item} />
+              <Link to={'/vehiclesdetail'} state={{item}}>
+                <Vehicles {...item} />
+              </Link>
             )}            
             keyExtractor={(item, index) => index.toString()}
             ListFooterComponent={renderLoader}                        
@@ -92,7 +95,8 @@ const styles = StyleSheet.create({
     paddingLeft:10,
     margin:5,
     borderColor:'black',
-    backgroundColor:'grey'
+    backgroundColor:'grey',
+    borderRadius: 6
   }
 });
 

@@ -1,17 +1,18 @@
 import React,{useEffect} from "react"
-import {View, Image, StyleSheet, ImageBackground, Text, BackHandler, Alert} from 'react-native'
+import {View, Image, StyleSheet, ImageBackground, Text, BackHandler} from 'react-native'
 import StyledText from './StyledText'
 import theme from "../../theme"
 import {useLocation, useNavigate } from 'react-router-native'; 
 
-const imgURL = 'https://starwars-visualguide.com/assets/img/species/'
+const imgURL = 'https://starwars-visualguide.com/assets/img/vehicles/'
 
-const SpeciesDetail = (props) => {
-    let specie = useLocation()
+const VehiclesDetail = (props) => {
+    let vehicle = useLocation()
     let navigate = useNavigate ()
+    
     useEffect(() => {
         const backAction = () => {
-         navigate('/species')          
+         navigate('/vehicles')          
         };
 
         const backHandler = BackHandler.addEventListener(
@@ -21,6 +22,8 @@ const SpeciesDetail = (props) => {
     
         return () => backHandler.remove();
       }, []);
+    
+
 
     return (    
         <View style={styles.container}>
@@ -28,41 +31,42 @@ const SpeciesDetail = (props) => {
                 <View style={{ flexGrow:0 }}>
                 <ImageBackground imageStyle={{ borderRadius: 6}} source= {{ uri:`https://starwars-visualguide.com/assets/img/big-placeholder.jpg`}}>
                 {<Image style={styles.image} source= {{ uri:
-                    `${imgURL + specie.state.item.url.split('/')[specie.state.item.url.split('/').length - 2]}.jpg`
+                    `${imgURL + vehicle.state.item.url.split('/')[vehicle.state.item.url.split('/').length - 2]}.jpg`
                         }}></Image>}
                 </ImageBackground>         
                 </View>
                 <View style={{ flex:1, paddingLeft:10 }}>                
-                    <StyledText style={styles.language} fontWeight='bold'>{specie.state.item.name.toUpperCase()}</StyledText>                                    
+                    <StyledText style={styles.language} fontWeight='bold' align={'center'}>{vehicle.state.item.name.toUpperCase()}</StyledText>                                    
                 </View>   
             </View>
             <View style={{justifyContent:'space-around'}}>
-
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Language:</StyledText><Text>  {specie.state.item.language}</Text>
+                    <StyledText fontWeight='bold' >Manufacturer:</StyledText><StyledText style={{flex:1, paddingLeft:10}}> {vehicle.state.item.manufacturer}</StyledText>
                 </View>
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold' >AVG Height:</StyledText><Text> {parseHigth(specie.state.item.average_height)}</Text>
+                    <StyledText fontWeight='bold'>Model:</StyledText><Text>  {vehicle.state.item.model}</Text>
+                </View>
+                <View style={{flexDirection:'row'}}>            
+                    <StyledText fontWeight='bold'>Class:</StyledText><Text> {vehicle.state.item.vehicle_class}</Text>
+                </View>
+                <View style={{flexDirection:'row'}}>            
+                    <StyledText fontWeight='bold'>Speed:</StyledText><Text> {vehicle.state.item.max_atmosphering_speed}</Text>
+                </View>
+                <View style={{flexDirection:'row'}}>            
+                    <StyledText fontWeight='bold' >Length:</StyledText><Text> {vehicle.state.item.length}</Text>
                 </View>        
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Classification:</StyledText><Text> {specie.state.item.classification}</Text>
+                    <StyledText fontWeight='bold'>Passengers:</StyledText><Text> {vehicle.state.item.passengers} </Text>
                 </View>
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Designation:</StyledText><Text> {specie.state.item.designation}</Text>
+                    <StyledText fontWeight='bold'>Cargo Capacity:</StyledText><Text> {vehicle.state.item.cargo_capacity}</Text>
                 </View> 
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>AVG lifespan:</StyledText><Text> {specie.state.item.average_lifespan} yrs.</Text>
+                    <StyledText fontWeight='bold'>Consumables:</StyledText><Text> {vehicle.state.item.consumables}</Text>
                 </View>                                
                 <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Eye Colors:</StyledText><Text> {specie.state.item.eye_colors}</Text>
-                </View>
-                <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Hair Colors:</StyledText><Text> {specie.state.item.hair_colors}</Text>
-                </View>
-                <View style={{flexDirection:'row'}}>            
-                    <StyledText fontWeight='bold'>Skin Colors:</StyledText><Text> {specie.state.item.skin_colors}</Text>
-                </View>
-                
+                    <StyledText fontWeight='bold'>Cost in Credits:</StyledText><Text> {vehicle.state.item.cost_in_credits}</Text>
+                </View>                
             </View>
         </View>
 
@@ -102,14 +106,11 @@ const parseThounsands = value =>{
 const parseHigth = value =>{
     //
     return value == 'unknown' ? String(value) : 
-
         /* value >= 1000000000000 ? `${Math.round(value/1000000000000)}B` : 
-
         value >= 1000000 ? `${Math.round(value/1000000)}M` :  */
-
-         `${Math.round(value/10)/10} mts.` 
+         `${Math.round(value/10)/10}` 
 
     
 }
 
-export default SpeciesDetail
+export default VehiclesDetail
